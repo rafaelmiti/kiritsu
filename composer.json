@@ -1,0 +1,14 @@
+{
+	"require": {
+		"slim/slim": "2.*",
+		"miti/lib": "dev-master"
+	},
+	
+	"autoload": {
+        "psr-4": {
+			"Middleware\\": "src/Middleware/",
+			"Controller\\": "src/Controller/",
+			"Model\\": "src/Model/"
+		}
+    }
+}
