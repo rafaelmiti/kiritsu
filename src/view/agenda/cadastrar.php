@@ -2,25 +2,25 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-	<?php require_once '../src/view/head.php' ?>
-	<title><?=$title?></title>
-	<script>window.onload = function(){mitiFormulario.contar('<?=$agenda->c[2]?>', <?=$agenda->l[2]?>);};</script>
+    <?php require_once '../src/view/head.php' ?>
+    <title><?=$title?></title>
+    <script>window.onload = function(){mitiFormulario.contar('<?=$agenda->c[2]?>', <?=$agenda->l[2]?>);};</script>
 </head>
 <!--=====neck=====-->
 <body>
 <?php require_once '../src/view/nav.php' ?>
 
 <section id="conteudo">
-	<form method="post">
-		<table>
-			<caption><?=$flash['status']? $flash['status']: $title?></caption>
+    <form method="post">
+        <table>
+            <caption><?=$flash['status']?: $title?></caption>
 
-			<?php
-			$a = $_POST? $_POST: $_GET;
-			$a = \Miti\Tratamento::indexar($a, $agenda->c);
-			?>
-			
-			<tbody>
+            <?php
+            $a = $_POST? $_POST: $_GET;
+            $a = \Miti\Tratamento::indexar($a, $agenda->c);
+            ?>
+
+            <tbody>
                 <tr>
                     <th scope="row"><?=$agenda->C[1]?></th>
                     <td><input type="text" name="<?=$agenda->c[1]?>" value="<?=$a[$agenda->c[1]]?>" maxlength="<?=$agenda->l[1]?>" required /></td>
@@ -58,13 +58,13 @@
 
                     <td></td>
                 </tr>
-			</tbody>
+            </tbody>
 
-			<input type="hidden" name="<?=$agenda->c[6]?>" value="<?=$a[$agenda->c[6]]? $a[$agenda->c[6]]: 0?>" required />
-			
-			<tfoot><tr><td colspan="100"><div><input type="submit" value="Cadastrar" /></div></td></tr></tfoot>
-		</table>
-	</form>
+            <input type="hidden" name="<?=$agenda->c[6]?>" value="<?=$a[$agenda->c[6]]? $a[$agenda->c[6]]: 0?>" required />
+
+            <tfoot><tr><td colspan="100"><div><input type="submit" value="Cadastrar" /></div></td></tr></tfoot>
+        </table>
+    </form>
 </section>
 </body>
 </html>

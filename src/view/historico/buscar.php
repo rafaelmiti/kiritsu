@@ -15,7 +15,7 @@ $title = 'Histórico &#10157; Buscar';
 <section id="conteudo">
     <form action="/l/historico/visualizar">
         <table>
-            <caption><?=$flash['status']? $flash['status']: $title ?></caption>
+            <caption><?=$flash['status']?: $title ?></caption>
 
             <tbody>
                 <tr>

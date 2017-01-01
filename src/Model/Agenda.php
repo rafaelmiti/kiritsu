@@ -1,7 +1,7 @@
 <?php
 namespace Model;
 
-class Agenda extends Entidade
+class Agenda extends Repositorio
 {
     public $C = [0 => '#', 1 => 'Categoria', 2 => 'Atividade', 3 => 'Data', 4 => 'Hora', 5 => 'Periódico', 6 => 'História'];
     public $c = [0 => 'id', 1 => 'categoria', 2 => 'atividade', 3 => 'data', 4 => 'hora', 5 => 'periodico', 6 => 'historia'];
