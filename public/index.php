@@ -16,15 +16,12 @@ $app->get('/', '\Controller\Index:get');
 $app->post('/login', '\Controller\Usuario:postLogin');
 $app->get('/logout', '\Controller\Usuario:getLogout');
 
-$app->group('/l', '\trancar', function() use($app)
-{
-    $app->group('/inspiracao', function() use($app)
-    {
+$app->group('/l', '\trancar', function() use($app) {
+    $app->group('/inspiracao', function() use($app) {
         $app->get('/visualizar/:id', '\Controller\Inspiracao:getVisualizar');
     });
 
-    $app->group('/historico', function() use($app)
-    {
+    $app->group('/historico', function() use($app) {
         $app->get('/visualizar', '\Controller\Historico:getVisualizar');
         $app->get('/buscar', '\Controller\Historico:getBuscar');
         $app->get('/editar/:id', '\Controller\Historico:getEditar');
@@ -33,8 +30,7 @@ $app->group('/l', '\trancar', function() use($app)
         $app->get('/excluir/:id', '\Controller\Historico:getExcluir');
     });
 
-    $app->group('/agenda', function() use($app)
-    {
+    $app->group('/agenda', function() use($app) {
         $app->get('/visualizar', '\Controller\Agenda:getVisualizar');
         $app->get('/cadastrar', '\Controller\Agenda:getCadastrar');
         $app->post('/cadastrar', '\Controller\Agenda:postCadastrar');
@@ -44,8 +40,7 @@ $app->group('/l', '\trancar', function() use($app)
         $app->get('/excluir/:id', '\Controller\Agenda:getExcluir');
     });
 
-    $app->group('/memoria', function() use($app)
-    {
+    $app->group('/memoria', function() use($app) {
         $app->get('/visualizar', '\Controller\Memoria:getVisualizar');
         $app->get('/buscar', '\Controller\Memoria:getBuscar');
         $app->get('/cadastrar', '\Controller\Memoria:getCadastrar');
@@ -55,8 +50,7 @@ $app->group('/l', '\trancar', function() use($app)
         $app->get('/excluir/:id', '\Controller\Memoria:getExcluir');
     });
 
-    $app->group('/chuva', function() use($app)
-    {
+    $app->group('/chuva', function() use($app) {
         $app->get('/visualizar', '\Controller\Chuva:getVisualizar');
         $app->get('/visualizar-grafico', '\Controller\Chuva:getVisualizarGrafico');
         $app->get('/cadastrar', '\Controller\Chuva:getCadastrar');
