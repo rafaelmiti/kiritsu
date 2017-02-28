@@ -7,7 +7,7 @@ function trancar()
 
     try {
         \Config::trancar();
-    } catch (\Exception $ex) {
+    } catch (\Exception $e) {
         $app->redirect('/');
     }
 }

@@ -1,7 +1,9 @@
 <?php
 namespace Controller;
 
-class Inspiracao
+use Model\Inspiracao;
+
+class InspiracaoController
 {
     private $app;
 
@@ -14,10 +16,10 @@ class Inspiracao
     public function getVisualizar($id)
     {
         try {
-            $inspiracao = new \Model\Inspiracao($this->app->config('config'));
+            $inspiracao = new Inspiracao($this->app->config('config'));
             $i = $inspiracao->ler(['id' => $id])->vetorizar();
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
             return;
         }
 

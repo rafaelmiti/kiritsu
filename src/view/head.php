@@ -4,4 +4,7 @@
 <?=\Miti\Tratamento::requerer('/js/Miti/Elemento.js')?>
 <?=\Miti\Tratamento::requerer('/js/Miti/Formulario.js')?>
 
-<script>var mitiElemento = new MitiElemento; var mitiFormulario = new MitiFormulario;</script>
+<script>
+    var mitiElemento = new MitiElemento;
+    var mitiFormulario = new MitiFormulario;
+</script>

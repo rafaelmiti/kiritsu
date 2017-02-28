@@ -1,7 +1,9 @@
 <?php
 namespace Controller;
 
-class Historico
+use Model\Agenda;
+
+class HistoricoController
 {
     private $app;
 
@@ -16,11 +18,11 @@ class Historico
         $pagina = isset($_GET['pagina'])? $_GET['pagina']: 1;
 
         try {
-            $agenda = new \Model\Agenda($this->app->config('config'));
+            $agenda = new Agenda($this->app->config('config'));
             $_GET[$agenda->c[6]] = 1;
             $banco = $agenda->paginar($_GET, 'desc', 15, $pagina);
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
 
         $this->app->render('historico/visualizar.php', ['app' => $this->app, 'agenda' => $agenda, 'banco' => $banco]);
@@ -29,9 +31,9 @@ class Historico
     public function getBuscar()
     {
         try {
-            $agenda = new \Model\Agenda($this->app->config('config'));
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
+            $agenda = new Agenda($this->app->config('config'));
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
 
         $this->app->render('historico/buscar.php', ['app' => $this->app, 'agenda' => $agenda]);
@@ -40,10 +42,10 @@ class Historico
     public function getEditar($c0)
     {
         try {
-            $agenda = new \Model\Agenda($this->app->config('config'));
+            $agenda = new Agenda($this->app->config('config'));
             $a = $agenda->ler([$agenda->c[0] => $c0])->vetorizar();
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
 
         $a = \Miti\Tratamento::escapar($a);
@@ -54,12 +56,12 @@ class Historico
     public function postEditar($c0)
     {
         try {
-            $agenda = new \Model\Agenda($this->app->config('config'));
+            $agenda = new Agenda($this->app->config('config'));
             $_POST[$agenda->c[0]] = $c0;
             $agenda->atualizar($_POST);
             $this->app->flash('status', 'Sucesso ao editar a história!');
-        } catch (\Exception $ex) {
-            $this->app->flash('status', $ex->getMessage());
+        } catch (\Exception $e) {
+            $this->app->flash('status', $e->getMessage());
         }
 
         $this->app->redirect("/l/historico/editar/$c0");
@@ -68,11 +70,11 @@ class Historico
     public function getAgendar($c0)
     {
         try {
-            $agenda = new \Model\Agenda($this->app->config('config'));
+            $agenda = new Agenda($this->app->config('config'));
             $agenda->agendar([$agenda->c[0] => $c0]);
             $this->app->flash('status', 'Sucesso ao reagendar a história!');
-        } catch (\Exception $ex) {
-            $this->app->flash('status', $ex->getMessage());
+        } catch (\Exception $e) {
+            $this->app->flash('status', $e->getMessage());
         }
 
         $this->app->redirect('/l/agenda/visualizar');
@@ -81,11 +83,11 @@ class Historico
     public function getExcluir($c0)
     {
         try {
-            $agenda = new \Model\Agenda($this->app->config('config'));
+            $agenda = new Agenda($this->app->config('config'));
             $agenda->deletar([$agenda->c[0] => $c0]);
             $this->app->flash('status', 'Sucesso ao excluir a história!');
-        } catch (\Exception $ex) {
-            $this->app->flash('status', $ex->getMessage());
+        } catch (\Exception $e) {
+            $this->app->flash('status', $e->getMessage());
         }
 
         $this->app->redirect('/l/historico/visualizar');

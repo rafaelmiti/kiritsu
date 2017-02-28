@@ -1,7 +1,9 @@
 <?php
 namespace Controller;
 
-class Chuva
+use Model\Chuva;
+
+class ChuvaController
 {
     private $app;
 
@@ -16,10 +18,10 @@ class Chuva
         $pagina = isset($_GET['pagina'])? $_GET['pagina']: 1;
 
         try {
-            $chuva = new \Model\Chuva($this->app->config('config'));
+            $chuva = new Chuva($this->app->config('config'));
             $banco = $chuva->paginar($_GET, 'desc', 15, $pagina);
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
 
         $this->app->render('chuva/visualizar.php', ['app' => $this->app, 'chuva' => $chuva, 'banco' => $banco]);
@@ -28,10 +30,10 @@ class Chuva
     public function getVisualizarGrafico()
     {
         try {
-            $chuva = new \Model\Chuva($this->app->config('config'));
+            $chuva = new Chuva($this->app->config('config'));
             $banco = $chuva->paginar();
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
 
         $this->app->render('chuva/visualizar-grafico.php', ['app' => $this->app, 'banco' => $banco]);
@@ -45,11 +47,11 @@ class Chuva
     public function postCadastrar()
     {
         try {
-            $chuva = new \Model\Chuva($this->app->config('config'));
+            $chuva = new Chuva($this->app->config('config'));
             $chuva->criar($_POST);
             $this->app->flash('status', 'Sucesso ao cadastrar a chuva!');
-        } catch (\Exception $ex) {
-            $this->app->flashNow('status', $ex->getMessage());
+        } catch (\Exception $e) {
+            $this->app->flashNow('status', $e->getMessage());
             $this->app->render('chuva/cadastrar.php', ['app' => $this->app]);
             $this->app->stop();
         }
@@ -60,10 +62,10 @@ class Chuva
     public function getEditar($id)
     {
         try {
-            $chuva = new \Model\Chuva($this->app->config('config'));
+            $chuva = new Chuva($this->app->config('config'));
             $c = $chuva->ler(['id' => $id])->vetorizar();
-        } catch (\Exception $ex) {
-            echo $ex->getMessage();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
 
         $c = \Miti\Tratamento::escapar($c);
@@ -76,11 +78,11 @@ class Chuva
         $_POST['id'] = $id;
 
         try {
-            $chuva = new \Model\Chuva($this->app->config('config'));
+            $chuva = new Chuva($this->app->config('config'));
             $chuva->atualizar($_POST);
             $this->app->flash('status', 'Sucesso ao editar a chuva!');
-        } catch (\Exception $ex) {
-            $this->app->flash('status', $ex->getMessage());
+        } catch (\Exception $e) {
+            $this->app->flash('status', $e->getMessage());
         }
 
         $this->app->redirect("/l/chuva/editar/$id");
@@ -89,11 +91,11 @@ class Chuva
     public function getExcluir($id)
     {
         try {
-            $chuva = new \Model\Chuva($this->app->config('config'));
+            $chuva = new Chuva($this->app->config('config'));
             $chuva->deletar(['id' => $id]);
             $this->app->flash('status', 'Sucesso ao excluir a chuva!');
-        } catch (\Exception $ex) {
-            $this->app->flash('status', $ex->getMessage());
+        } catch (\Exception $e) {
+            $this->app->flash('status', $e->getMessage());
         }
 
         $this->app->redirect('/l/chuva/visualizar');

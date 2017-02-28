@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 
-class Memoria
+class MemoriaController
 {
     private $app;
 

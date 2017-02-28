@@ -24,7 +24,7 @@
 
                 <tr>
                     <th scope="row"><?=$agenda->C[2]?></th>
-                    <td><textarea name="<?=$agenda->c[2]?>" id="<?=$agenda->c[2]?>" cols="60" rows="15" maxlength="<?=$agenda->l[2]?>"><?=$a[$agenda->c[2]]?></textarea></td>
+                    <td><textarea name="<?=$agenda->c[2]?>" id="<?=$agenda->c[2]?>" cols="100" rows="25" maxlength="<?=$agenda->l[2]?>"><?=$a[$agenda->c[2]]?></textarea></td>
                     <td id="<?=$agenda->c[2]?>_miticontar" width="40"></td>
                 </tr>
 

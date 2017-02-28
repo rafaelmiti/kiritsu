@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 
-class Index
+class IndexController
 {
     private $app;
 

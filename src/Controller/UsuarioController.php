@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 
-class Usuario
+class UsuarioController
 {
     private $app;
 

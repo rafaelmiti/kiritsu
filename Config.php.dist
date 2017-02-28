@@ -13,7 +13,7 @@ class Config
     {
         $this->config['ambiente'] = 1;
         $this->config['sistema'] = 'Kiritsu';
-        $this->config['versao'] = '5.2.24';
+        $this->config['versao'] = '5.26';
         $this->config['timezone'] = 'America/Sao_Paulo';
         $this->config['charset'] = 'UTF-8';
         $this->config['salt'] = '$1$mitipess$';
