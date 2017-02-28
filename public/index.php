@@ -11,10 +11,10 @@ try {
 $app = new \Slim\Slim(['config' => $config, 'debug' => $config['ambiente'], 'templates.path' => '../src/view/']);
 $app->response->headers->set('Content-Type', "text/html; charset={$config['charset']}");
 
-$app->get('/', 'Controller\Index:get');
+$app->get('/', 'Controller\IndexController:get');
 
-$app->post('/login', 'Controller\Usuario:postLogin');
-$app->get('/logout', 'Controller\Usuario:getLogout');
+$app->post('/login', 'Controller\UsuarioController:postLogin');
+$app->get('/logout', 'Controller\UsuarioController:getLogout');
 
 $app->group('/l', '\trancar', function() use($app) {
     $app->group('/inspiracao', function() use($app) {
