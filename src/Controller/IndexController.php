@@ -13,6 +13,6 @@ class IndexController
 
     public function get()
     {
-        $this->app->render('usuario/login.php', ['app' => $this->app]);
+        $this->app->redirect('/l/agenda/visualizar');
     }
 }

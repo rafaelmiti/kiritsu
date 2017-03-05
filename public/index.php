@@ -13,6 +13,7 @@ $app->response->headers->set('Content-Type', "text/html; charset={$config['chars
 
 $app->get('/', 'Controller\IndexController:get');
 
+$app->get('/login', 'Controller\UsuarioController:getLogin');
 $app->post('/login', 'Controller\UsuarioController:postLogin');
 $app->get('/logout', 'Controller\UsuarioController:getLogout');
 

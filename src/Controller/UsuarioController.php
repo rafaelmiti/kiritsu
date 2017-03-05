@@ -11,6 +11,11 @@ class UsuarioController
         $this->app = $app;
     }
 
+    public function getLogin()
+    {
+        $this->app->render('usuario/login.php', ['app' => $this->app]);
+    }
+    
     public function postLogin()
     {
         try {

@@ -8,6 +8,6 @@ function trancar()
     try {
         \Config::trancar();
     } catch (\Exception $e) {
-        $app->redirect('/');
+        $app->redirect('/login');
     }
 }
