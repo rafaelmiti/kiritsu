@@ -1,4 +1,4 @@
-<?php $title = 'Histórico &#10157; Visualizar' ?>
+<?php $title = 'Histórico > Visualizar' ?>
 <!doctype html>
 <html lang="pt-br">
 <head>

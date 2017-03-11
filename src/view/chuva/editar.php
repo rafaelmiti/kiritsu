@@ -1,4 +1,4 @@
-<?php $title = "Chuva &#10157; Editar &#10157; #{$c['id']}" ?>
+<?php $title = "Chuva > Editar > #{$c['id']}" ?>
 <!doctype html>
 <html lang="pt-br">
 <head>

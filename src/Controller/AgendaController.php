@@ -41,7 +41,7 @@ class AgendaController
             $this->app->flash('status', 'Sucesso ao cadastrar o agendamento!');
         } catch (\Exception $e) {
             $this->app->flashNow('status', $e->getMessage());
-            $this->app->render('agenda/cadastrar.php', ['app' => $this->app]);
+            $this->app->render('agenda/cadastrar.php', ['app' => $this->app, 'agenda' => $agenda]);
             $this->app->stop();
         }
 

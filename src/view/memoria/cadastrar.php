@@ -1,4 +1,4 @@
-<?php $title = 'Memória &#10157; Cadastrar' ?>
+<?php $title = 'Memória > Cadastrar' ?>
 <!doctype html>
 <html lang="pt-br">
 <head>

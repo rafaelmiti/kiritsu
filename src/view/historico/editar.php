@@ -1,4 +1,4 @@
-<?php $title = "Histórico &#10157; Editar &#10157; #{$a['id']}" ?>
+<?php $title = "Histórico > Editar > #{$a['id']}" ?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -11,7 +11,7 @@
 <?php require_once '../src/view/nav.php' ?>
 
 <section id="conteudo">
-    <form method="post">
+    <form method="post" id="historico-editar">
         <table>
             <caption><?=$flash['status']?: $title?></caption>
 

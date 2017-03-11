@@ -1,4 +1,4 @@
-<?php $title = 'Chuva &#10157; Visualizar' ?>
+<?php $title = 'Chuva > Visualizar' ?>
 <!doctype html>
 <html lang="pt-br">
 <head>

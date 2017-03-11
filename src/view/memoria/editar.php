@@ -1,4 +1,4 @@
-<?php $title = "Memória &#10157; Editar &#10157; #{$m['id']}" ?>
+<?php $title = "Memória > Editar > #{$m['id']}" ?>
 <!doctype html>
 <html lang="pt-br">
 <head>

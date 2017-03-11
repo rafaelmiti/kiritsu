@@ -23,7 +23,11 @@ class InspiracaoController
             return;
         }
 
-        $this->app->response->headers->set('Content-Type', 'image/jpeg');
-        echo $i['imagem'];
+        if (!empty($i['imagem'])) {
+            $this->app->response->headers->set('Content-Type', 'image/jpeg');
+            echo $i['imagem'];
+        } else {
+            $this->app->response->setStatus(404);
+        }
     }
 }

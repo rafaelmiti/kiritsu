@@ -1,4 +1,4 @@
-<?php $title = 'Memória &#10157; Buscar' ?>
+<?php $title = 'Memória > Buscar' ?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -15,47 +15,42 @@
             <caption><?=$flash['status']?: $title?></caption>
 
             <tbody>
-                    <tr>
-                        <th scope="row"><label for="id">#</label></th>
-                        <td><input type="text" name="id" id="id" /></td>
-                    </tr>
+                <tr>
+                    <th scope="row"><label for="categoria">Categoria</label></th>
 
-                    <tr>
-                        <th scope="row"><label for="categoria">Categoria</label></th>
+                    <td>
+                        <select name="categoria" id="categoria">
+                            <option></option>
 
-                        <td>
-                            <select name="categoria" id="categoria">
-                                <option></option>
+                            <?php
+                            try {
+                                $categoria = new \Model\Categoria($app->config('config'));
+                                $banco = $categoria->listar();
+                            } catch (\Exception $ex) {
+                                echo $ex->getMessage();
+                            }
 
-                                <?php
-                                try {
-                                    $categoria = new \Model\Categoria($app->config('config'));
-                                    $banco = $categoria->listar();
-                                } catch (\Exception $ex) {
-                                    echo $ex->getMessage();
-                                }
+                            while ($c = $banco->vetorizar()):
+                                $c = \miti\Tratamento::escapar($c);
+                                ?>
 
-                                while ($c = $banco->vetorizar()):
-                                    $c = \miti\Tratamento::escapar($c);
-                                    ?>
-                                
-                                    <option value="<?=$c['id']?>"><?=$c['nome']?></option>
-                                <?php endwhile; ?>
-                            </select>
-                        </td>
-                    </tr>
+                                <option value="<?=$c['id']?>"><?=$c['nome']?></option>
+                            <?php endwhile; ?>
+                        </select>
+                    </td>
+                </tr>
 
-                    <tr>
-                        <th scope="row"><label for="sub_categoria">Sub categoria</label></th>
-                        <td><input type="text" name="sub_categoria" id="sub_categoria" /></td>
-                    </tr>
+                <tr>
+                    <th scope="row"><label for="sub_categoria">Sub categoria</label></th>
+                    <td><input type="text" name="sub_categoria" id="sub_categoria" /></td>
+                </tr>
 
-                    <tr>
-                        <th scope="row"><label for="descricao">Descrição</label></th>
-                        <td><input type="text" name="descricao" id="descricao" /></td>
-                    </tr>
+                <tr>
+                    <th scope="row"><label for="descricao">Descrição</label></th>
+                    <td><input type="text" name="descricao" id="descricao" /></td>
+                </tr>
 
-                    <input type="hidden" name="pagina" value="1" />
+                <input type="hidden" name="pagina" value="1" />
             </tbody>
 
             <tfoot><tr><td colspan="100"><div><input type="submit" value="Buscar" /></div></td></tr></tfoot>

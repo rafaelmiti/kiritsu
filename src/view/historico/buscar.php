@@ -1,6 +1,6 @@
 <?php
 $root = '..';
-$title = 'Histórico &#10157; Buscar';
+$title = 'Histórico > Buscar';
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -13,16 +13,11 @@ $title = 'Histórico &#10157; Buscar';
 <?php require_once "$root/src/view/nav.php" ?>
 
 <section id="conteudo">
-    <form action="/l/historico/visualizar">
+    <form action="/l/historico/visualizar" id="historico-buscar">
         <table>
             <caption><?=$flash['status']?: $title ?></caption>
 
             <tbody>
-                <tr>
-                    <th><?=$agenda->C[0]?></th>
-                    <td><input type="number" name="<?=$agenda->c[0]?>" min="0" /></td>
-                </tr>
-
                 <tr>
                     <th><?=$agenda->C[1]?></th>
                     <td><input type="text" name="<?=$agenda->c[1]?>" maxlength="<?=$agenda->l[1]?>" /></td>
