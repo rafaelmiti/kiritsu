@@ -21,7 +21,7 @@ class Usuario extends Repositorio
         ;
 
         if ($u['senha'] !== crypt($credencial['senha'], $this->config['salt'])) {
-            throw new \UnexpectedValueException('Falha na autenticação.');
+            throw new \UnexpectedValueException('Falha na autenticação');
         }
 
         $_SESSION['usuario'] = $u['id'];

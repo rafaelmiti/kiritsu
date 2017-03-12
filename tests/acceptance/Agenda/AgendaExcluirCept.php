@@ -17,10 +17,11 @@ $I->submitForm('#agenda-cadastrar', [
     'periodico' => '0',
 ]);
 
+$I->see('Teste');
 $id = $I->grabTextFrom('//tbody/tr[1]/th');
 
 $I->click("a[href='/l/agenda/excluir/$id']");
 
-$I->see('Sucesso ao excluir o agendamento!');
+$I->see('Sucesso ao excluir o agendamento');
 $I->dontSee('Teste');
 $I->see('15 / 16');

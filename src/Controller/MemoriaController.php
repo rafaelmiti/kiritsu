@@ -41,10 +41,14 @@ class MemoriaController
         try {
             $memoria = new \Model\Memoria($this->app->config('config'));
             $memoria->criar($_POST);
-            $this->app->flash('status', 'Sucesso ao cadastrar a memória!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao cadastrar a memória');
         } catch (\Exception $ex) {
-            $this->app->flashNow('status', $ex->getMessage());
-            $this->app->render('memoria/cadastrar.php', ['app' => $this->app]);
+            $this->app->flashNow('status', 'nok');
+            $this->app->flashNow('message', $ex->getMessage());
+            
+            $this->app->render('memoria/cadastrar.php', ['app' => $this->app, 'memoria' => $memoria]);
             $this->app->stop();
         }
 
@@ -72,9 +76,12 @@ class MemoriaController
         try {
             $memoria = new \Model\Memoria($this->app->config('config'));
             $memoria->atualizar($_POST);
-            $this->app->flash('status', 'Sucesso ao editar a memória!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao editar a memória');
         } catch (\Exception $ex) {
-            $this->app->flash('status', $ex->getMessage());
+            $this->app->flash('status', 'nok');
+            $this->app->flash('message', $ex->getMessage());
         }
 
         $this->app->redirect("/l/memoria/editar/$id");
@@ -85,9 +92,12 @@ class MemoriaController
         try {
             $memoria = new \Model\Memoria($this->app->config('config'));
             $memoria->deletar(['id' => $id]);
-            $this->app->flash('status', 'Sucesso ao excluir a memória!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao excluir a memória');
         } catch (\Exception $ex) {
-            $this->app->flash('status', $ex->getMessage());
+            $this->app->flash('status', 'nok');
+            $this->app->flash('message', $ex->getMessage());
         }
 
         $this->app->redirect('/l/memoria/visualizar');

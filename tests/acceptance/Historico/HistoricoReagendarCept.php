@@ -23,7 +23,6 @@ $I->click("a[href='/l/agenda/historiar/$id']");
 
 $I->amOnPage("/l/historico/visualizar?historia=1&pagina=2");
 $I->click("a[href='/l/historico/agendar/$id']");
-
-$I->see('Sucesso ao reagendar a história!');
+$I->canSee('Sucesso ao reagendar a história');
 
 $I->click("a[href='/l/agenda/excluir/$id']");

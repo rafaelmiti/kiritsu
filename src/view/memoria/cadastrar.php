@@ -1,66 +1,69 @@
-<?php $title = 'Memória > Cadastrar' ?>
+<?php
+use Miti\Tratamento;
+$title = 'Memória > Cadastrar';
+?>
 <!doctype html>
 <html lang="pt-br">
-<head>
-    <?php require_once '../src/view/head.php' ?>
-    <title><?=$title?></title>
-    <script>window.onload = function(){mitiFormulario.contar('descricao', <?=$memoria->l[3]?>);};</script>
-</head>
-<!--=====neck=====-->
-<body>
-<?php require_once '../src/view/nav.php' ?>
+    <head>
+        <?php require_once '../src/view/head.php' ?>
+        <title><?=$title?></title>
+        <script>window.onload = function(){mitiFormulario.contar('descricao', <?=$memoria->l[3]?>);};</script>
+    </head>
 
-<section id="conteudo">
-    <form method="post">
-        <table>
-            <caption><?=$flash['status']?: $title?></caption>
+    <body>
+        <?php require_once '../src/view/nav.php' ?>
 
-            <tbody>
-                <tr>
-                    <?php $_POST = \Miti\Tratamento::indexar($_POST, ['categoria', 'sub_categoria', 'descricao']) ?>
+        <section id="conteudo">
+            <form method="post" id="memoria-cadastrar">
+                <table>
+                    <caption class="<?=$flash['status']?>"><?=$flash['message']?: $title?></caption>
 
-                    <th scope="row"><label for="categoria">Categoria</label></th>
+                    <tbody>
+                        <tr>
+                            <?php $_POST = Tratamento::indexar($_POST, ['categoria', 'sub_categoria', 'descricao']) ?>
 
-                    <td>
-                        <select name="categoria" id="categoria" required>
-                            <option></option>
+                            <th scope="row"><label for="categoria">Categoria</label></th>
 
-                            <?php
-                            try {
-                                $categoria = new \Model\Categoria($app->config('config'));
-                                $banco = $categoria->listar();
-                            } catch (\Exception $ex) {
-                                echo $ex->getMessage();
-                            }
+                            <td>
+                                <select name="categoria" id="categoria" required>
+                                    <option></option>
 
-                            while ($c = $banco->vetorizar()):
-                                $c = \Miti\Tratamento::escapar($c);
-                                ?>
-                            
-                                <option value="<?=$c['id']?>" <?=$c['id'] == $_POST['categoria']? 'selected': ''?>><?=$c['nome']?></option>
-                            <?php endwhile; ?>
-                        </select>
-                    </td>
+                                    <?php
+                                    try {
+                                        $categoria = new \Model\Categoria($app->config('config'));
+                                        $banco = $categoria->listar();
+                                    } catch (\Exception $ex) {
+                                        echo $ex->getMessage();
+                                    }
 
-                    <td></td>
-                </tr>
+                                    while ($c = $banco->vetorizar()):
+                                        $c = Tratamento::escapar($c);
+                                        ?>
 
-                <tr>
-                    <th scope="row"><label for="sub_categoria">Sub categoria</label></th>
-                    <td><input type="text" name="sub_categoria" id="sub_categoria" value="<?=$_POST['sub_categoria']?>" maxlength="<?=$memoria->l[2]?>" /></td>
-                    <td></td>
-                </tr>
+                                        <option value="<?=$c['id']?>" <?=$c['id'] == $_POST['categoria']? 'selected': ''?>><?=$c['nome']?></option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </td>
 
-                <tr>
-                    <th scope="row"><label for="descricao">Descrição</label></th>
-                    <td><textarea name="descricao" id="descricao" cols="100" rows="30" maxlength="<?=$memoria->l[3]?>" required><?=$_POST['descricao']?></textarea></td>
-                    <td id="descricao_miticontar" width="40"></td>
-                </tr>
-            </tbody>
+                            <td></td>
+                        </tr>
 
-            <tfoot><tr><td colspan="100"><div><input type="submit" value="Cadastrar" /></div></td></tr></tfoot>
-        </table>
-    </form>
-</section>
-</body>
+                        <tr>
+                            <th scope="row"><label for="sub_categoria">Sub categoria</label></th>
+                            <td><input type="text" name="sub_categoria" id="sub_categoria" value="<?=$_POST['sub_categoria']?>" maxlength="<?=$memoria->l[2]?>" /></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row"><label for="descricao">Descrição</label></th>
+                            <td><textarea name="descricao" id="descricao" cols="100" rows="30" maxlength="<?=$memoria->l[3]?>" required><?=$_POST['descricao']?></textarea></td>
+                            <td id="descricao_miticontar" width="40"></td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot><tr><td colspan="100"><div><input type="submit" value="Cadastrar" /></div></td></tr></tfoot>
+                </table>
+            </form>
+        </section>
+    </body>
 </html>

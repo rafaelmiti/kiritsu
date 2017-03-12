@@ -17,14 +17,15 @@ $I->submitForm('#agenda-cadastrar', [
     'periodico' => '0',
 ]);
 
+$I->see('Teste');
 $id = $I->grabTextFrom('//tbody/tr[1]/th');
 
 $I->click("a[href='/l/agenda/historiar/$id']");
 
 $I->amOnPage("/l/historico/visualizar?historia=1&pagina=2");
 $I->click("a[href='/l/historico/excluir/$id']");
-$I->see('Sucesso ao excluir a história!');
+$I->see('Sucesso ao excluir a história');
 
+$I->see('15 / 16');
 $I->amOnPage("/l/historico/visualizar?historia=1&pagina=2");
-$I->dontSee($id);
 $I->dontSee('Teste');

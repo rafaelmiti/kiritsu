@@ -17,15 +17,15 @@ $I->submitForm('#agenda-cadastrar', [
     'periodico' => '1',
 ]);
 
-$id = $I->grabTextFrom('//tbody/tr[1]/th');
-
 $I->click('//tbody/tr[1]/td[last()]/a[1]');
-$I->see('Agenda > Cadastrar');
-$I->seeInField('categoria', 'Teste');
-$I->seeInField('atividade', '');
-$I->seeInField('data', '2016-03-05');
-$I->seeInField('hora', '18:51:00');
-$I->seeOptionIsSelected('periodico', 'Sim');
+$I->canSee('Agenda > Cadastrar');
+$I->canSeeInField('categoria', 'Teste');
+$I->canSeeInField('atividade', '');
+$I->canSeeInField('data', '2016-03-05');
+$I->canSeeInField('hora', '18:51:00');
+$I->canSeeOptionIsSelected('periodico', 'Sim');
 
 $I->click('a[href="/l/agenda/visualizar"]');
+
+$id = $I->grabTextFrom('//tbody/tr[1]/th');
 $I->click("a[href='/l/agenda/excluir/$id']");

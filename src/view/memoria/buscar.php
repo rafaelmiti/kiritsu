@@ -1,61 +1,64 @@
-<?php $title = 'Memória > Buscar' ?>
+<?php
+use Miti\Tratamento;
+$title = 'Memória > Buscar';
+?>
 <!doctype html>
 <html lang="pt-br">
-<head>
-    <?php require_once '../src/view/head.php' ?>
-    <title><?=$title?></title>
-</head>
-<!--=====neck=====-->
-<body>
-<?php require_once '../src/view/nav.php' ?>
+    <head>
+        <?php require_once '../src/view/head.php' ?>
+        <title><?=$title?></title>
+    </head>
 
-<section id="conteudo">
-    <form action="/l/memoria/visualizar">
-        <table>
-            <caption><?=$flash['status']?: $title?></caption>
+    <body>
+        <?php require_once '../src/view/nav.php' ?>
 
-            <tbody>
-                <tr>
-                    <th scope="row"><label for="categoria">Categoria</label></th>
+        <section id="conteudo">
+            <form action="/l/memoria/visualizar" id="memoria-buscar">
+                <table>
+                    <caption class="<?=$flash['status']?>"><?=$flash['message']?: $title?></caption>
 
-                    <td>
-                        <select name="categoria" id="categoria">
-                            <option></option>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><label for="categoria">Categoria</label></th>
 
-                            <?php
-                            try {
-                                $categoria = new \Model\Categoria($app->config('config'));
-                                $banco = $categoria->listar();
-                            } catch (\Exception $ex) {
-                                echo $ex->getMessage();
-                            }
+                            <td>
+                                <select name="categoria" id="categoria">
+                                    <option></option>
 
-                            while ($c = $banco->vetorizar()):
-                                $c = \miti\Tratamento::escapar($c);
-                                ?>
+                                    <?php
+                                    try {
+                                        $categoria = new \Model\Categoria($app->config('config'));
+                                        $banco = $categoria->listar();
+                                    } catch (\Exception $ex) {
+                                        echo $ex->getMessage();
+                                    }
 
-                                <option value="<?=$c['id']?>"><?=$c['nome']?></option>
-                            <?php endwhile; ?>
-                        </select>
-                    </td>
-                </tr>
+                                    while ($c = $banco->vetorizar()):
+                                        $c = Tratamento::escapar($c);
+                                        ?>
 
-                <tr>
-                    <th scope="row"><label for="sub_categoria">Sub categoria</label></th>
-                    <td><input type="text" name="sub_categoria" id="sub_categoria" /></td>
-                </tr>
+                                        <option value="<?=$c['id']?>"><?=$c['nome']?></option>
+                                    <?php endwhile ?>
+                                </select>
+                            </td>
+                        </tr>
 
-                <tr>
-                    <th scope="row"><label for="descricao">Descrição</label></th>
-                    <td><input type="text" name="descricao" id="descricao" /></td>
-                </tr>
+                        <tr>
+                            <th scope="row"><label for="sub_categoria">Sub categoria</label></th>
+                            <td><input type="text" name="sub_categoria" id="sub_categoria" /></td>
+                        </tr>
 
-                <input type="hidden" name="pagina" value="1" />
-            </tbody>
+                        <tr>
+                            <th scope="row"><label for="descricao">Descrição</label></th>
+                            <td><input type="text" name="descricao" id="descricao" /></td>
+                        </tr>
 
-            <tfoot><tr><td colspan="100"><div><input type="submit" value="Buscar" /></div></td></tr></tfoot>
-        </table>
-    </form>
-</section>
-</body>
+                        <input type="hidden" name="pagina" value="1" />
+                    </tbody>
+
+                    <tfoot><tr><td colspan="100"><div><input type="submit" value="Buscar" /></div></td></tr></tfoot>
+                </table>
+            </form>
+        </section>
+    </body>
 </html>

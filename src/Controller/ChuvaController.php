@@ -49,9 +49,13 @@ class ChuvaController
         try {
             $chuva = new Chuva($this->app->config('config'));
             $chuva->criar($_POST);
-            $this->app->flash('status', 'Sucesso ao cadastrar a chuva!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao cadastrar a chuva');
         } catch (\Exception $e) {
-            $this->app->flashNow('status', $e->getMessage());
+            $this->app->flashNow('status', 'nok');
+            $this->app->flashNow('message', $e->getMessage());
+            
             $this->app->render('chuva/cadastrar.php', ['app' => $this->app]);
             $this->app->stop();
         }
@@ -80,9 +84,12 @@ class ChuvaController
         try {
             $chuva = new Chuva($this->app->config('config'));
             $chuva->atualizar($_POST);
-            $this->app->flash('status', 'Sucesso ao editar a chuva!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao editar a chuva');
         } catch (\Exception $e) {
-            $this->app->flash('status', $e->getMessage());
+            $this->app->flash('status', 'nok');
+            $this->app->flash('message', $e->getMessage());
         }
 
         $this->app->redirect("/l/chuva/editar/$id");
@@ -93,9 +100,12 @@ class ChuvaController
         try {
             $chuva = new Chuva($this->app->config('config'));
             $chuva->deletar(['id' => $id]);
-            $this->app->flash('status', 'Sucesso ao excluir a chuva!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao excluir a chuva');
         } catch (\Exception $e) {
-            $this->app->flash('status', $e->getMessage());
+            $this->app->flash('status', 'nok');
+            $this->app->flash('message', $e->getMessage());
         }
 
         $this->app->redirect('/l/chuva/visualizar');

@@ -7,15 +7,13 @@
         <script>window.onload = function(){mitiFormulario.contar('<?=$agenda->c[2]?>', <?=$agenda->l[2]?>);};</script>
     </head>
     
-    <!--=====neck=====-->
-    
     <body>
         <?php require_once '../src/view/nav.php' ?>
 
         <section id="conteudo">
             <form method="post" id="agenda-editar">
                 <table>
-                    <caption><?=$flash['status']?: $title?></caption>
+                    <caption class="<?=$flash['status']?>"><?=$flash['message']?: $title?></caption>
 
                     <tbody>
                         <tr>

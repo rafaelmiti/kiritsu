@@ -1,6 +1,5 @@
 <?php
 use Miti\Tratamento;
-
 $title = 'Agenda > Cadastrar'
 ?>
 <!doctype html>
@@ -11,15 +10,13 @@ $title = 'Agenda > Cadastrar'
         <script>window.onload = function(){mitiFormulario.contar('<?=$agenda->c[2]?>', <?=$agenda->l[2]?>);};</script>
     </head>
     
-    <!--=====neck=====-->
-    
     <body>
         <?php require_once '../src/view/nav.php' ?>
 
         <section id="conteudo">
             <form method="post" id="agenda-cadastrar">
                 <table>
-                    <caption><?=$flash['status']?: $title?></caption>
+                    <caption class="<?=$flash['status']?>"><?=$flash['message']?: $title?></caption>
 
                     <?php
                     $a = $_POST? $_POST: $_GET;

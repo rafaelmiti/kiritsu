@@ -38,9 +38,13 @@ class AgendaController
         try {
             $agenda = new Agenda($this->app->config('config'));
             $agenda->criar($_POST);
-            $this->app->flash('status', 'Sucesso ao cadastrar o agendamento!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao cadastrar o agendamento');
         } catch (\Exception $e) {
-            $this->app->flashNow('status', $e->getMessage());
+            $this->app->flashNow('status', 'nok');
+            $this->app->flashNow('message', $e->getMessage());
+            
             $this->app->render('agenda/cadastrar.php', ['app' => $this->app, 'agenda' => $agenda]);
             $this->app->stop();
         }
@@ -68,9 +72,12 @@ class AgendaController
             $agenda = new Agenda($this->app->config('config'));
             $_POST[$agenda->c[0]] = $c0;
             $agenda->atualizar($_POST);
-            $this->app->flash('status', 'Sucesso ao editar o agendamento!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao editar o agendamento');
         } catch (\Exception $e) {
-            $this->app->flash('status', $e->getMessage());
+            $this->app->flash('status', 'nok');
+            $this->app->flash('message', $e->getMessage());
         }
 
         $this->app->redirect("/l/agenda/editar/$c0");
@@ -81,9 +88,12 @@ class AgendaController
         try {
             $agenda = new Agenda($this->app->config('config'));
             $agenda->historiar([$agenda->c[0] => $c0]);
-            $this->app->flash('status', 'Sucesso ao historiar o agendamento!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao historiar o agendamento');
         } catch (\Exception $e) {
-            $this->app->flash('status', $e->getMessage());
+            $this->app->flash('status', 'nok');
+            $this->app->flash('message', $e->getMessage());
         }
 
         $this->app->redirect('/l/historico/visualizar');
@@ -94,9 +104,12 @@ class AgendaController
         try {
             $agenda = new Agenda($this->app->config('config'));
             $agenda->deletar([$agenda->c[0] => $c0]);
-            $this->app->flash('status', 'Sucesso ao excluir o agendamento!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao excluir o agendamento');
         } catch (\Exception $e) {
-            $this->app->flash('status', $e->getMessage());
+            $this->app->flash('status', 'nok');
+            $this->app->flash('message', $e->getMessage());
         }
 
         $this->app->redirect('/l/agenda/visualizar');

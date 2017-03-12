@@ -1,6 +1,6 @@
 <?php
 $I = new AcceptanceTester($scenario);
-$I->wantTo('Ver um erro na edição');
+$I->wantTo('Editar um registro');
 
 $I->amOnPage('/');
 $I->fillField('Nome', 'admin');
@@ -19,17 +19,20 @@ $I->submitForm('#agenda-cadastrar', [
 
 $id = $I->grabTextFrom('//tbody/tr[1]/th');
 
-$I->click("a[href='/l/agenda/editar/$id']");
+$I->click("a[href='/l/agenda/historiar/$id']");
 
-$I->submitForm('#agenda-editar', [
+$I->amOnPage("/l/historico/visualizar?historia=1&pagina=2");
+$I->click("a[href='/l/historico/editar/$id']");
+
+$I->submitForm('#historico-editar', [
     'categoria' => '',
     'atividade' => 'Atividade 2.',
     'data' => '2016-03-06',
-    'hora' => '19:22',
+    'hora' => '18:52',
     'periodico' => '1',
 ]);
 
 $I->canSee("Valor vazio para o campo 'categoria'.");
 
-$I->click('a[href="/l/agenda/visualizar"]');
-$I->click("a[href='/l/agenda/excluir/$id']");
+$I->amOnPage("/l/historico/visualizar?historia=1&pagina=2");
+$I->click("a[href='/l/historico/excluir/$id']");

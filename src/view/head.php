@@ -1,8 +1,10 @@
-<link rel="icon" href="/img/miti.png" type="image/png" />
-<?=\Miti\Tratamento::requerer('/css/geral.css')?>
+<?php use Miti\Tratamento ?>
 
-<?=\Miti\Tratamento::requerer('/js/Miti/Elemento.js')?>
-<?=\Miti\Tratamento::requerer('/js/Miti/Formulario.js')?>
+<link rel="icon" href="/img/miti.png" type="image/png" />
+<?=Tratamento::requerer('/css/geral.css')?>
+
+<?=Tratamento::requerer('/js/Miti/Elemento.js')?>
+<?=Tratamento::requerer('/js/Miti/Formulario.js')?>
 
 <script>
     var mitiElemento = new MitiElemento;

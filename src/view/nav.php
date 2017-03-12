@@ -1,3 +1,5 @@
+<?php use Miti\Tratamento ?>
+
 <nav class="esquerdo">
     <div>
         <img src="/img/caminho.png" alt="Kanji da palavra caminho" id="logo" />
@@ -35,7 +37,7 @@
         echo $ex->getMessage();
     }
 
-    $i = \Miti\Tratamento::escapar($i);
+    $i = Tratamento::escapar($i);
     ?>
 
     <img src="/l/inspiracao/visualizar/<?=$i['id']?>" alt="Foto de personalidade" title="<?=$i['nome']?>" id="inspiracao" />

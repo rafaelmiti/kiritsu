@@ -12,14 +12,12 @@ $title = 'Agenda > Visualizar'
         <script>window.onload = function(){mitiFormulario.confirmarClick();};</script>
     </head>
     
-    <!--=====neck=====-->
-    
     <body>
         <?php require_once '../src/view/nav.php' ?>
 
         <section id="conteudo">
             <table class="lista">
-                <caption><?=$flash['status']?: $title ?></caption>
+                <caption class="<?=$flash['status']?>"><?=$flash['message']?: $title ?></caption>
 
                 <thead>
                     <tr>

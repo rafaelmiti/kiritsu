@@ -20,10 +20,10 @@ $I->submitForm('#agenda-cadastrar', [
 $id = $I->grabTextFrom('//tbody/tr[1]/th');
 
 $I->click("a[href='/l/agenda/historiar/$id']");
-$I->see('Sucesso ao historiar o agendamento!');
+$I->canSee('Sucesso ao historiar o agendamento');
 
 $I->amOnPage("/l/historico/visualizar?historia=1&pagina=2");
-$I->see($id);
-$I->see('Teste');
+$I->canSee($id);
+$I->canSee('Teste');
 
 $I->click("a[href='/l/historico/excluir/$id']");

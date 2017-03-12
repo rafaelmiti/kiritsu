@@ -1,71 +1,76 @@
-<?php $title = 'Histórico > Visualizar' ?>
+<?php
+use Miti\Tratamento;
+use Miti\Tempo;
+
+$title = 'Histórico > Visualizar';
+?>
 <!doctype html>
 <html lang="pt-br">
-<head>
-    <?php require_once '../src/view/head.php' ?>
-    <title><?=$title?></title>
-    <script>window.onload = function(){mitiFormulario.confirmarClick();};</script>
-</head>
-<!--=====neck=====-->
-<body>
-<?php require_once '../src/view/nav.php' ?>
+    <head>
+        <?php require_once '../src/view/head.php' ?>
+        <title><?=$title?></title>
+        <script>window.onload = function(){mitiFormulario.confirmarClick();};</script>
+    </head>
 
-<section id="conteudo">
-    <table class="lista">
-        <caption><?=$flash['status']?: $title?></caption>
+    <body>
+        <?php require_once '../src/view/nav.php' ?>
 
-        <thead>
-            <tr>
-                <th><?=$agenda->C[0]?></th>
-                <th><?=$agenda->C[1]?></th>
-                <th><?=$agenda->C[2]?></th>
-                <th><?=$agenda->C[3]?></th>
-                <th>Dia</th>
-                <th><?=$agenda->C[4]?></th>
-                <th>Ações</th>
-            </tr>
-        </thead>
+        <section id="conteudo">
+            <table class="lista">
+                <caption class="<?=$flash['status']?>"><?=$flash['message']?: $title?></caption>
 
-        <tbody>
-            <?php
-            echo !$banco->quantificar()? '<tr><td colspan="100">Não há registros.</td></tr>': null;
+                <thead>
+                    <tr>
+                        <th><?=$agenda->C[0]?></th>
+                        <th><?=$agenda->C[1]?></th>
+                        <th><?=$agenda->C[2]?></th>
+                        <th><?=$agenda->C[3]?></th>
+                        <th>Dia</th>
+                        <th><?=$agenda->C[4]?></th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
 
-            while ($a = $banco->vetorizar()):
-                $a = \Miti\Tratamento::escapar($a);
-                $pontual = !$a[$agenda->c[5]]? 'pontual': '';
-                ?>
-            
-                <tr>
-                    <th scope="row"><?=$a[$agenda->c[0]]?></th>
-                    <td class="<?=$pontual?>"><?=$a[$agenda->c[1]]?></td>
-                    <td title="<?=$a[$agenda->c[2]]?>"><?=\Miti\Tratamento::encurtar($a[$agenda->c[2]], 90)?></td>
-                    <td class="centro"><?=\Miti\Tempo::usBR($a[$agenda->c[3]])?></td>
-                    <td class="centro"><?=\Miti\Tempo::diaDaSemana($a[$agenda->c[3]])?></td>
-                    <td class="centro"><?=mb_substr($a[$agenda->c[4]], 0, 5)?></td>
+                <tbody>
+                    <?php
+                    echo !$banco->quantificar()? '<tr><td colspan="100">Não há registros.</td></tr>': null;
 
-                    <td class="centro">
-                        <a href="/l/historico/agendar/<?=$a[$agenda->c[0]]?>" class="miticlick" title="<?=$a[$agenda->c[1]]?>">
-                            <img src="/img/agenda.png" alt="Agenda" title="Reagendar" /></a>
+                    while ($a = $banco->vetorizar()):
+                        $a = Tratamento::escapar($a);
+                        $pontual = !$a[$agenda->c[5]]? 'pontual': '';
+                        ?>
 
-                        <a href="/l/historico/editar/<?=$a[$agenda->c[0]]?>">
-                            <img src="/img/lapis.png" alt="Lápis" title="Editar" /></a>
+                        <tr>
+                            <th scope="row"><?=$a[$agenda->c[0]]?></th>
+                            <td class="<?=$pontual?>"><?=$a[$agenda->c[1]]?></td>
+                            <td title="<?=$a[$agenda->c[2]]?>"><?=Tratamento::encurtar($a[$agenda->c[2]], 90)?></td>
+                            <td class="centro"><?=Tempo::usBR($a[$agenda->c[3]])?></td>
+                            <td class="centro"><?=Tempo::diaDaSemana($a[$agenda->c[3]])?></td>
+                            <td class="centro"><?=mb_substr($a[$agenda->c[4]], 0, 5)?></td>
 
-                        <a href="/l/historico/excluir/<?=$a[$agenda->c[0]]?>" class="miticlick" title="<?=$a[$agenda->c[1]]?>">
-                            <img src="/img/x.png" alt="Letra X" title="Excluir" /></a>
-                    </td>
-                </tr>
-            <?php endwhile; ?>
-        </tbody>
+                            <td class="centro">
+                                <a href="/l/historico/agendar/<?=$a[$agenda->c[0]]?>" class="miticlick" title="<?=$a[$agenda->c[1]]?>">
+                                    <img src="/img/agenda.png" alt="Agenda" title="Reagendar" /></a>
 
-        <tfoot>
-            <tr>
-                <td colspan="100">
-                    <div class="esquerda"><?=$banco->quantificar()?> / <?=$agenda->getTotal()?></div>
-                    <div><?=$agenda->getPaginacao()->criar('pagina', 'on', 'off', $_GET)?></div>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
-</section>
-</body>
+                                <a href="/l/historico/editar/<?=$a[$agenda->c[0]]?>">
+                                    <img src="/img/lapis.png" alt="Lápis" title="Editar" /></a>
+
+                                <a href="/l/historico/excluir/<?=$a[$agenda->c[0]]?>" class="miticlick" title="<?=$a[$agenda->c[1]]?>">
+                                    <img src="/img/x.png" alt="Letra X" title="Excluir" /></a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="100">
+                            <div class="esquerda"><?=$banco->quantificar()?> / <?=$agenda->getTotal()?></div>
+                            <div><?=$agenda->getPaginacao()->criar('pagina', 'on', 'off', $_GET)?></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+    </body>
 </html>

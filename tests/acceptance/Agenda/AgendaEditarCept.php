@@ -20,7 +20,7 @@ $I->submitForm('#agenda-cadastrar', [
 $id = $I->grabTextFrom('//tbody/tr[1]/th');
 
 $I->click("a[href='/l/agenda/editar/$id']");
-$I->see("Agenda > Editar > #$id");
+$I->canSee("Agenda > Editar > #$id");
 
 $I->submitForm('#agenda-editar', [
     'categoria' => 'Teste 2',
@@ -30,11 +30,12 @@ $I->submitForm('#agenda-editar', [
     'periodico' => '1',
 ]);
 
-$I->see('Sucesso ao editar o agendamento!');
+$I->canSee('Sucesso ao editar o agendamento');
+
 $I->click('a[href="/l/agenda/visualizar"]');
-$I->see('Teste 2');
-$I->see('Atividade 2.');
-$I->see('06/03/2016');
-$I->see('19:22');
+$I->canSee('Teste 2');
+$I->canSee('Atividade 2.');
+$I->canSee('06/03/2016');
+$I->canSee('19:22');
 
 $I->click("a[href='/l/agenda/excluir/$id']");

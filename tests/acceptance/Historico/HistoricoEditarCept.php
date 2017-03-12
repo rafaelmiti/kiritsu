@@ -32,12 +32,12 @@ $I->submitForm('#historico-editar', [
     'periodico' => '1',
 ]);
 
-$I->see('Sucesso ao editar a história!');
-$I->seeInField('categoria', 'Teste 2');
-$I->seeInField('atividade', 'Atividade 2.');
-$I->seeInField('data', '2016-03-06');
-$I->seeInField('hora', '18:52');
-$I->seeOptionIsSelected('periodico', 'Sim');
+$I->canSee('Sucesso ao editar a história');
+$I->canSeeInField('categoria', 'Teste 2');
+$I->canSeeInField('atividade', 'Atividade 2.');
+$I->canSeeInField('data', '2016-03-06');
+$I->canSeeInField('hora', '18:52');
+$I->canSeeOptionIsSelected('periodico', 'Sim');
 
 $I->amOnPage("/l/historico/visualizar?historia=1&pagina=2");
 $I->click("a[href='/l/historico/excluir/$id']");

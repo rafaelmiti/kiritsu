@@ -59,9 +59,12 @@ class HistoricoController
             $agenda = new Agenda($this->app->config('config'));
             $_POST[$agenda->c[0]] = $c0;
             $agenda->atualizar($_POST);
-            $this->app->flash('status', 'Sucesso ao editar a história!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao editar a história');
         } catch (\Exception $e) {
-            $this->app->flash('status', $e->getMessage());
+            $this->app->flash('status', 'nok');
+            $this->app->flash('message', $e->getMessage());
         }
 
         $this->app->redirect("/l/historico/editar/$c0");
@@ -72,9 +75,12 @@ class HistoricoController
         try {
             $agenda = new Agenda($this->app->config('config'));
             $agenda->agendar([$agenda->c[0] => $c0]);
-            $this->app->flash('status', 'Sucesso ao reagendar a história!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao reagendar a história');
         } catch (\Exception $e) {
-            $this->app->flash('status', $e->getMessage());
+            $this->app->flash('status', 'nok');
+            $this->app->flash('message', $e->getMessage());
         }
 
         $this->app->redirect('/l/agenda/visualizar');
@@ -85,9 +91,12 @@ class HistoricoController
         try {
             $agenda = new Agenda($this->app->config('config'));
             $agenda->deletar([$agenda->c[0] => $c0]);
-            $this->app->flash('status', 'Sucesso ao excluir a história!');
+            
+            $this->app->flash('status', 'ok');
+            $this->app->flash('message', 'Sucesso ao excluir a história');
         } catch (\Exception $e) {
-            $this->app->flash('status', $e->getMessage());
+            $this->app->flash('status', 'nok');
+            $this->app->flash('message', $e->getMessage());
         }
 
         $this->app->redirect('/l/historico/visualizar');

@@ -23,7 +23,9 @@ class UsuarioController
             !isset($_POST['manter'])?: $this->app->setCookie('usuario', $_SESSION['usuario'], '1 month');
             $this->app->redirect('/l/agenda/visualizar');
         } catch (\Exception $ex) {
-            $this->app->flashNow('status', $ex->getMessage());
+            $this->app->flashNow('status', 'nok');
+            $this->app->flashNow('message', $ex->getMessage());
+            
             $this->app->render('usuario/login.php', ['app' => $this->app]);
         }
     }
