@@ -20,7 +20,6 @@ class UsuarioController
     {
         try {
             (new \Model\Usuario($this->app->config('config')))->login($_POST);
-            !isset($_POST['manter'])?: $this->app->setCookie('usuario', $_SESSION['usuario'], '1 month');
             $this->app->redirect('/l/agenda/visualizar');
         } catch (\Exception $ex) {
             $this->app->flashNow('status', 'nok');
@@ -33,7 +32,6 @@ class UsuarioController
     public function getLogout()
     {
         (new \Model\Usuario($this->app->config('config')))->logout();
-        !$this->app->getCookie('usuario')?: $this->app->deleteCookie('usuario');
         $this->app->redirect('/');
     }
 }

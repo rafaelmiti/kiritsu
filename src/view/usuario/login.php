@@ -27,11 +27,6 @@ $title = 'Login';
                                 <th scope="row"><label for="senha">Senha</label></th>
                                 <td><input type="password" name="senha" id="senha" required /></td>
                             </tr>
-
-                            <tr>
-                                <th scope="row"><label for="manter">Manter</label></th>
-                                <td><input type="checkbox" name="manter" id="manter" checked /></td>
-                            </tr>
                     </tbody>
 
                     <tfoot><tr><td colspan="100"><div><input type="submit" value="Login" /></div></td></tr></tfoot>
